@@ -1,0 +1,14 @@
+# Entorno virtual
+.venv/
+
+# Configuración local
+.env
+
+# Base de datos local
+*.db
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+*.tsbuildinfo
+.pytest_cache/

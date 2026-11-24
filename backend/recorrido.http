@@ -1,0 +1,31 @@
+@base = http://localhost:8000/api/v1
+
+### Catálogo público
+GET {{base}}/categorias
+
+### Productos paginados
+GET {{base}}/productos?skip=0&limit=20
+
+### Registro de cliente (cambiar username y email si ya existen)
+POST {{base}}/auth/register
+Content-Type: application/json
+
+{"username":"cliente_demo","full_name":"Cliente Demo","email":"demo@example.com","password":"Cliente1234!"}
+
+### Login: la cookie access_token queda en el cliente HTTP
+POST {{base}}/auth/token
+Content-Type: application/x-www-form-urlencoded
+
+username=cliente_demo&password=Cliente1234!
+
+### Pedido; usar la cookie de la respuesta anterior
+POST {{base}}/pedidos
+Content-Type: application/json
+
+{"items":[{"producto_id":1,"cantidad":2}],"forma_pago":"EFECTIVO","direccion_entrega":"Calle principal 123"}
+
+### Mis pedidos
+GET {{base}}/pedidos
+
+### Cancelar pedido pendiente; usar un ID real
+PATCH {{base}}/pedidos/1/cancelar
